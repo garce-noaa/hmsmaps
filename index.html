@@ -1,0 +1,104 @@
+<!doctype html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Fisheries Map</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <link rel="shortcut icon" href="./favicon.ico">
+    <script type="module" src="./index.js"></script>
+  </head>
+  <body>
+    <div id="page">
+        <div id="header">
+            <img src="hmsbanner.png" style="height: 6em;">
+            
+        </div>
+        <div id="bottom">
+            <div id="map">           
+            </div>
+            
+            <div id="leftmenu">
+                <b>&nbspRFMO Area</b><br/>
+                <input type="checkbox" id="iattc"  style="width: 1.1em; height: 1.1em; vertical-align: middle;"> 
+                <label for="iattc" style="vertical-align: middle;">IATTC</label><br>
+                <input type="checkbox" id="wcpfc" style="width: 1.1em; height: 1.1em; vertical-align: middle;"> 
+                <label for="wcpfc" style="vertical-align: middle;">WCPFC</label><br>
+                <input type="checkbox" id="isc" style="width: 1.1em; height: 1.1em; vertical-align: middle;"> 
+                <label for="isc" style="vertical-align: middle;">ISC</label><br><br/>
+                <b>&nbspFishery Extents</b><br/>
+                <input type="checkbox" id="sptt"  style="width: 1.1em; height: 1.1em; vertical-align: middle;"> 
+                <label for="sptt" style="vertical-align: middle;">Purse Seine</label><br>
+                <input type="checkbox" id="longline" style="width: 1.1em; height: 1.1em; vertical-align: middle;"> 
+                <label for="longline" style="vertical-align: middle;">Longline</label><br>
+                <input type="checkbox" id="albnp" style="width: 1.1em; height: 1.1em; vertical-align: middle;"> 
+                <label for="albnp" style="vertical-align: middle;">North Albacore</label><br>
+                <input type="checkbox" id="albsp" style="width: 1.1em; height: 1.1em; vertical-align: middle;"> 
+                <label for="albsp" style="vertical-align: middle;">South Albacore</label><br><br/>
+                <b>&nbspHeatmaps</b><br/>
+                <input type="checkbox" id="sptth"  style="width: 1.1em; height: 1.1em; vertical-align: middle;"> 
+                <label for="sptth" style="vertical-align: middle;">Purse Seine</label><br>
+                <input type="checkbox" id="longlineh" style="width: 1.1em; height: 1.1em; vertical-align: middle;"> 
+                <label for="longlineh" style="vertical-align: middle;">Longline</label><br>
+                <input type="checkbox" id="albnph" style="width: 1.1em; height: 1.1em; vertical-align: middle;"> 
+                <label for="albnph" style="vertical-align: middle;">North Albacore</label><br>
+                <input type="checkbox" id="albsph" style="width: 1.1em; height: 1.1em; vertical-align: middle;"> 
+                <label for="albsph" style="vertical-align: middle;">South Albacore</label><br><br/>
+                <b>&nbspPoints</b><br/>
+                <input type="checkbox" id="spttp"  style="width: 1.1em; height: 1.1em; vertical-align: middle;"> 
+                <label for="spttp" style="vertical-align: middle;">Purse Seine</label><br>
+                <input type="checkbox" id="longlinep" style="width: 1.1em; height: 1.1em; vertical-align: middle;"> 
+                <label for="longlinep" style="vertical-align: middle;">Longline</label><br>
+                <input type="checkbox" id="albnpp" style="width: 1.1em; height: 1.1em; vertical-align: middle;"> 
+                <label for="albnpp" style="vertical-align: middle;">North Albacore</label><br>
+                <input type="checkbox" id="albspp" style="width: 1.1em; height: 1.1em; vertical-align: middle;"> 
+                <label for="albspp" style="vertical-align: middle;">South Albacore</label><br><br/>
+                <b>&nbspYear</b><br/>
+                <select id="fishingYear" style='width:10em'>
+                      <option value="">All</option>    
+                      <option value="2020">2020</option>
+                      <option value="2019">2019</option>
+                      <option value="2018">2018</option>  
+                      <option value="2017">2017</option>  
+                      <option value="2016">2016</option>  
+                </select><br><br/>
+                 <div id="floating-panel">
+      <b>&nbspMap options</b><br/>
+      &nbsp<button id="change-gradient">Heatmap color</button><br/>
+      <a>&nbspRadius:</a><br/>
+      &nbsp<input type="range" min="1" max="50" value="25" class="slider" id="rdRange"><br/>
+      <a>&nbspHeatmap Opacity:</a><br/>
+      &nbsp<input type="range" min="1" max="100" value="50" class="slider" id="opRange"><br/>
+      <a>&nbspShape Opacity:</a><br/>
+      &nbsp<input type="range" min="1" max="100" value="30" class="slider" id="opexRange"><br/>
+      <a>&nbspPoint Color:</a>
+      <input type="color" id="ptcolor" value="#f5ed0f" style="width: 3em; height: 1.5em;" />
+      
+    </div>    
+            </div>
+            
+        </div>  
+      
+    </div>
+  
+
+     <!--
+    <script>
+        (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
+        ({key: "AIzaSyBZZM-xBTmw2E2q718qPHdWYGMAcrQAXzI",
+          libraries: "visualization"});
+    console.log(e);
+    </script>
+-->
+    
+  <!--  <script src="https://maps.googleapis.com/maps/api/js?v=weekly&client=gme-noaa&libraries=visualization&callback=Function.prototype&loading=async"></script>-->
+<script src="https://maps.googleapis.com/maps/api/js?client=gme-noaa&libraries=visualization"></script>
+    
+    
+  </body>
+</html>
+
